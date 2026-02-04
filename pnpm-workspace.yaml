@@ -1,4 +1,4 @@
-I packages:
+packages:
   - "packages/*"
   - "frontend"
   - "backend"
