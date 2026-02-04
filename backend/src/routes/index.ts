@@ -6,7 +6,7 @@ import {
   authenticateAdmin,
   authenticateJwt,
   authenticateLearner,
-} from "../ middleware/auth";
+} from "../middleware/auth";
 import { CoursePublicRouter, CourseRouter } from "./course/course";
 import { LemonSqueezyRouter } from "./course/lemonSqueezyProduct";
 import { ModuleRouter } from "./course/module";
