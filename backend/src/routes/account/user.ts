@@ -1,6 +1,6 @@
 import { SUpdateUserProfileWithId } from "@packages/definitions";
 import { Router } from "express";
-import { validator } from "../../ middleware/validator";
+import { validator } from "../../middleware/validator";
 import { UserController } from "../../controllers/account/user";
 import { CourseEnrollmentController } from "../../controllers/course/courseEnrollment";
 
