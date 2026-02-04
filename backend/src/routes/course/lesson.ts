@@ -12,7 +12,7 @@ import {
 } from "@packages/definitions";
 import { Router } from "express";
 import { LessonController } from "../../controllers/course/lesson";
-import { validator } from "../../ middleware/validator";
+import { validator } from "../../middleware/validator";
 
 class LessonRoutes {
   router: Router;
