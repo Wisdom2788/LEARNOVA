@@ -7,7 +7,7 @@ import {
 } from "@packages/definitions";
 import { Router } from "express";
 import { ChapterController } from "../../controllers/course/chapter";
-import { validator } from "../../ middleware/validator";
+import { validator } from "../../middleware/validator";
 
 class ChapterRoutes {
   router: Router;
