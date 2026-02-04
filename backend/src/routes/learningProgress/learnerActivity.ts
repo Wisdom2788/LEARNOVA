@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { LearnerActivityController } from "../../controllers/learningProgress/learnerActivity";
-import { validator } from "../../ middleware/validator";
+import { validator } from "../../middleware/validator";
 import {
   SIdParams,
   SLearnerChaptersParams,
