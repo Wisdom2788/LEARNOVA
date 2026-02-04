@@ -21,7 +21,7 @@ export class ModuleController {
 
   @catchErrors()
   async getModule(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const module = await moduleService.getById(id);
 
     if (!module) {
@@ -39,7 +39,7 @@ export class ModuleController {
 
   @catchErrors()
   async updateModule(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const result = await moduleService.updateModule(id, req.body);
 
     if (!result) {
@@ -51,7 +51,7 @@ export class ModuleController {
 
   @catchErrors()
   async archiveModule(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const result = await moduleService.archiveModule(id);
 
     if (!result) {

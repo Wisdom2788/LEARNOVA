@@ -20,7 +20,7 @@ export class CourseController {
 
   @catchErrors()
   async getPublicCourse(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const course = await courseService.findCourseWithNestedRelations(id, [
       "modules",
     ]);
@@ -45,7 +45,7 @@ export class CourseController {
 
   @catchErrors()
   async getCourse(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const course = await courseService.getById(id);
 
     if (!course) return sendError(res, "Course not found", 404);
@@ -61,7 +61,7 @@ export class CourseController {
 
   @catchErrors()
   async updateCourse(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const result = await courseService.updateCourse(id, req.body);
 
     if (!result) return sendError(res, "Course not found", 404);
@@ -71,7 +71,7 @@ export class CourseController {
 
   @catchErrors()
   async archiveCourse(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const result = await courseService.archiveCourse(id);
 
     if (!result) return sendError(res, "Course not found", 404);

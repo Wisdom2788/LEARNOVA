@@ -32,7 +32,7 @@ export class LessonController {
 
   @catchErrors()
   async getLesson(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const lesson = await lessonService.getById(id);
 
     if (!lesson) {
@@ -50,7 +50,7 @@ export class LessonController {
 
   @catchErrors()
   async updateLesson(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const result = await lessonService.updateLesson(id, req.body);
 
     if (!result) {
@@ -62,7 +62,7 @@ export class LessonController {
 
   @catchErrors()
   async archiveLesson(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const result = await lessonService.archiveLesson(id);
 
     if (!result) {
@@ -76,9 +76,9 @@ export class LessonController {
   async updateLessonPositions(req: Request, res: Response) {
     const { positions }: TUpdatePositions = req.body;
     await lessonService.updateLessonPositions(positions, {
-      courseId: parseInt(req.params.courseId),
-      moduleId: parseInt(req.params.moduleId),
-      chapterId: parseInt(req.params.chapterId),
+      courseId: parseInt(Array.isArray(req.params.courseId) ? req.params.courseId[0] : req.params.courseId),
+      moduleId: parseInt(Array.isArray(req.params.moduleId) ? req.params.moduleId[0] : req.params.moduleId),
+      chapterId: parseInt(Array.isArray(req.params.chapterId) ? req.params.chapterId[0] : req.params.chapterId),
     });
     sendSuccess(res, { message: "Lesson positions updated successfully" });
   }
@@ -94,7 +94,7 @@ export class LessonController {
 
   @catchErrors()
   async getLessonContentLink(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const lesson = await lessonContentLinkService.getLessonContentLinkById(id);
     if (!lesson) return sendError(res, "Lesson content link not found", 404);
 
@@ -103,7 +103,7 @@ export class LessonController {
 
   @catchErrors()
   async updateLessonContentLink(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const result = await lessonContentLinkService.updateLessonContentLink(
       id,
       req.body
@@ -129,7 +129,7 @@ export class LessonController {
 
   @catchErrors()
   async getQuiz(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const quiz = await quizService.getById(id);
 
     if (!quiz) return sendError(res, "Quiz not found", 404);
@@ -145,7 +145,7 @@ export class LessonController {
 
   @catchErrors()
   async updateQuiz(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const { options, ...quizData } = req.body;
     const result = await quizService.updateQuizWithOptions(
       id,

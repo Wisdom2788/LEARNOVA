@@ -22,7 +22,7 @@ export class ChapterController {
 
   @catchErrors()
   async getChapter(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const chapter = await chapterService.getById(id);
 
     if (!chapter) {
@@ -40,7 +40,7 @@ export class ChapterController {
 
   @catchErrors()
   async updateChapter(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const result = await chapterService.updateChapter(id, req.body);
 
     if (!result) {
@@ -52,7 +52,7 @@ export class ChapterController {
 
   @catchErrors()
   async archiveChapter(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id);
     const result = await chapterService.archiveChapter(id);
 
     if (!result) {
