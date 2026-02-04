@@ -5,7 +5,7 @@ import {
   SUpdatePositions,
 } from "@packages/definitions";
 import { Router } from "express";
-import { validator } from "../../ middleware/validator";
+import { validator } from "../../middleware/validator";
 import { CourseController } from "../../controllers/course/course";
 
 class CourseRoutes {
